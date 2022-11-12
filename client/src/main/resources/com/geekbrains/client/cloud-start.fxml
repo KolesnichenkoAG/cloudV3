@@ -5,23 +5,42 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="426.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.geekbrains.client.CloudController">
-    <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4d4979e" height="338.0" stroke="BLACK" strokeType="INSIDE" width="426.0" />
-        <Label layoutX="119.0" layoutY="14.0" prefHeight="82.0" prefWidth="191.0" text="    Cloud" textAlignment="CENTER" textFill="#121c87">
-            <font>
-                <Font name="AR CHRISTY" size="41.0" />
-            </font>
-        </Label>
-        <TextField fx:id="authLoginField" layoutX="106.0" layoutY="128.0" prefHeight="28.0" prefWidth="215.0" promptText="Логин" />
-        <PasswordField fx:id="authPasswordField" layoutX="106.0" layoutY="164.0" onAction="#tryToAuth" prefHeight="28.0" prefWidth="215.0" promptText="Пароль" />
-        <Button fx:id="authEnterButton" layoutX="134.0" layoutY="214.0" mnemonicParsing="false" onAction="#tryToAuth" prefHeight="28.0" prefWidth="162.0" text="Войти">
-         <font>
-            <Font name="AR CHRISTY" size="12.0" />
-         </font></Button>
-        <Button fx:id="authRegButton" layoutX="134.0" layoutY="253.0" mnemonicParsing="false" onAction="#registrationUser" prefHeight="28.0" prefWidth="162.0" text="Регистрация">
-         <font>
-            <Font name="AR CHRISTY" size="12.0" />
-         </font></Button>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0"
+            prefWidth="426.0"
+            xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.geekbrains.client.AuthController">
+
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4d4979e" height="338.0" stroke="BLACK" strokeType="INSIDE"
+               width="426.0"/>
+
+    <Label layoutX="119.0" layoutY="14.0" prefHeight="82.0" prefWidth="191.0" text="    Cloud" textAlignment="CENTER"
+           textFill="#121c87">
+        <font>
+            <Font name="AR CHRISTY" size="41.0"/>
+        </font>
+    </Label>
+
+    <TextField fx:id="authLoginField" layoutX="106.0" layoutY="128.0" prefHeight="28.0" prefWidth="215.0"
+               promptText="Логин"/>
+
+    <PasswordField fx:id="authPasswordField" layoutX="106.0" layoutY="164.0" onAction="#tryToAuth" prefHeight="28.0"
+                   prefWidth="215.0"
+                   promptText="Пароль"/>
+
+    <Button fx:id="authEnterButton" layoutX="134.0" layoutY="214.0" mnemonicParsing="false" onAction="#tryToAuth"
+            prefHeight="28.0"
+            prefWidth="162.0" text="Войти">
+        <font>
+            <Font name="AR CHRISTY" size="12.0"/>
+        </font>
+    </Button>
+
+    <Button fx:id="authRegButton" layoutX="134.0" layoutY="253.0" mnemonicParsing="false" onAction="#registrationUser"
+            prefHeight="28.0"
+            prefWidth="162.0" text="Регистрация">
+        <font>
+            <Font name="AR CHRISTY" size="12.0"/>
+        </font>
+    </Button>
+
 </AnchorPane>

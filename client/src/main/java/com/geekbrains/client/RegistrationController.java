@@ -1,5 +1,6 @@
 package com.geekbrains.client;
 
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,4 +15,11 @@ public class RegistrationController {
     public Button regRegistrButton;
     public Button regCloseButton;
 
+    public void registration(ActionEvent actionEvent) {
+
+    }
+
+    public void cancel(ActionEvent actionEvent) {
+
+    }
 }

@@ -23,8 +23,8 @@
    <TextField fx:id="regLoginField" layoutX="48.0" layoutY="229.0" prefHeight="25.0" prefWidth="214.0" promptText="Логин" />
    <PasswordField fx:id="regPasswordField" layoutX="48.0" layoutY="260.0" prefHeight="25.0" prefWidth="214.0" promptText="Пароль" />
    <PasswordField fx:id="regConfirmPasswordField" layoutX="48.0" layoutY="292.0" prefHeight="25.0" prefWidth="214.0" promptText="Подтверждение пароля" />
-   <Button fx:id="regRegistrButton" layoutX="74.0" layoutY="334.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Зарегистрироваться" />
-   <Button fx:id="regCloseButton" layoutX="74.0" layoutY="370.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="161.0" text="Отмена" />
+   <Button fx:id="regRegistrButton" onAction="#registration" layoutX="74.0" layoutY="334.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="161.0" text="Зарегистрироваться" />
+   <Button fx:id="regCloseButton" onAction="#cancel" layoutX="74.0" layoutY="370.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="161.0" text="Отмена" />
 
 
 </AnchorPane>

@@ -16,7 +16,7 @@ public interface AuthenticationProvider {
 
     boolean newUser(String lastname, String name, String email, String login, String password, String uuid);
 
-    void connectDB();
+    void connectBD();
 
     void disconnectBD();
 }

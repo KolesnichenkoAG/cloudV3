@@ -14,14 +14,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Server {
-    private BDAuthenticationHandler authenticationHandler;
+    private BDAuthenticationProvider authenticationProvider;
 
     public void start() {
         EventLoopGroup auth = new NioEventLoopGroup(1);
         EventLoopGroup worker = new NioEventLoopGroup(1);
 
-        authenticationHandler = new BDAuthenticationHandler();
-        authenticationHandler.connectDB();
+        authenticationProvider = new BDAuthenticationProvider();
+        authenticationProvider.connectBD();
 
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
@@ -33,7 +33,7 @@ public class Server {
                             socketChannel.pipeline().addLast(
                                     new ObjectDecoder(ClassResolvers.cacheDisabled(null)),
                                     new ObjectEncoder(),
-                                    new MessageHandler(authenticationHandler)
+                                    new MessageHandler(authenticationProvider)
                             );
                         }
                     });
@@ -43,7 +43,7 @@ public class Server {
         } catch (Exception e) {
             log.error("e", e);
         } finally {
-            authenticationHandler.disconnectBD();
+            authenticationProvider.disconnectBD();
             auth.shutdownGracefully();
             worker.shutdownGracefully();
         }

@@ -24,8 +24,9 @@ public class DialogDeleteController implements Initializable {
         this.fileName = fileName;
     }
 
-    public void deleteFile(ActionEvent actionEvent) { // здесь будет логика отправки запроса на удаление
-
+    public void deleteFile(ActionEvent actionEvent) {
+        network.sendDeleteFileMessageToServer(fileName, login);
+        closeWindow();
     }
 
     public void closeWindow() {

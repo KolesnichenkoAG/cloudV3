@@ -7,12 +7,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ClientApp extends Application {
+    private Network network;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        Parent parent = FXMLLoader.load(getClass().getResource("cloud-start.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/cloud-start.fxml"));
+        StageChange stageChange = StageChange.getInstance();
         primaryStage.setScene(new Scene(parent));
+        stageChange.setCurrentScene(primaryStage);
         primaryStage.resizableProperty().set(false);
         primaryStage.setTitle("Облачное хранилище");
         primaryStage.show();

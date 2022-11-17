@@ -31,8 +31,16 @@ public class DialogRenameController implements Initializable {
     public void setListFiles(List<String> listFiles) {
         this.listFiles = listFiles;
     }
-    public void renameFile(ActionEvent actionEvent) { // логика отправки запроса на переименование
 
+    public void renameFile(ActionEvent actionEvent) {
+        if (!RenNewNameField.getText().isEmpty()) {
+            if (listFiles.indexOf(RenNewNameField.getText()) == -1) {
+                network.sendRenameMessageToServer(fileName, RenNewNameField.getText(), login);
+                closeWindow();
+            } else network.showCONFIRMATION("Файл с таким именем уже существует. Введите другое имя");
+        } else {
+            network.showCONFIRMATION("Введите новое имя файла " + fileName);
+        }
     }
 
     public void closeWindow() {

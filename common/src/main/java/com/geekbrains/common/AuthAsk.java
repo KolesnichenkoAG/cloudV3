@@ -1,5 +1,6 @@
 package com.geekbrains.common;
 
+
 public class AuthAsk implements Message {
     private String login;
     private String password;

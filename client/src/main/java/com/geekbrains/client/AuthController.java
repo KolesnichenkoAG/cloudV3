@@ -35,7 +35,7 @@ public class AuthController implements Initializable {
     }
 
     public void registrationUser(ActionEvent actionEvent) throws IOException {
-        network.openWindow("/registration.fxml", "Регистрация нового пользователя",
+        network.openWindow("registration.fxml", "Регистрация нового пользователя",
                 "", "", null);
     }
 

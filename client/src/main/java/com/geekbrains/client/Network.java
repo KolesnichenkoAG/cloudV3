@@ -88,7 +88,7 @@ public class Network {
 
                     case FILE_MESSAGE:
                         FileMessage fileMessage = (FileMessage) message;
-                        Path dirTmp = Paths.get(Paths.get("").toAbsolutePath().toString(), "client", // возможно переделать название папки
+                        Path dirTmp = Paths.get(Paths.get("").toAbsolutePath().toString(), "client", "client", // возможно переделать название папки
                                 "tmp", fileMessage.getLogin());
                         filesUtils.saveFile(dirTmp, Paths.get(fileMessage.getDirDestination()), fileMessage);
                         break;
@@ -98,7 +98,7 @@ public class Network {
                         break;
 
                     case REG_OK:
-                        openWindow("/cloud-start.fxml", "Облачное хранилище", "", "", null);
+                        openWindow("cloud-start.fxml", "Облачное хранилище", "", "", null);
                         showCONFIRMATION("Регистрация прошла успешно");
                         break;
 
@@ -114,7 +114,7 @@ public class Network {
                     case LIST_MESSAGE:
                         ListMessage listMessage = (ListMessage) message;
                         if (controller == null) {
-                            openWindow("/cloud.fxml", "Облачное хранилище", userName, login, listMessage);
+                            openWindow("cloud.fxml", "Облачное хранилище", userName, login, listMessage);
                         } else {
                             updateFileList(listMessage.getListFiles(), controller);
                         }
@@ -223,7 +223,7 @@ public class Network {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
                 Parent root1 = (Parent) fxmlLoader.load();
 
-                if (fxml.equals("/cloud.fxml")) {
+                if (fxml.equals("cloud.fxml")) {
                     controller = fxmlLoader.<CloudController>getController();
                     controller.storeUserLabel.setText(fio);    // так как создал один label запишем только имя
 
@@ -234,16 +234,16 @@ public class Network {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setTitle(title);
                 stage.setScene(new Scene(root1));
-                if (fxml.equals("/registration.fxml")) {
+                if (fxml.equals("registration.fxml")) {
                     stage.setOnCloseRequest(event -> {
                         try {
-                            openWindow("/cloud-start.fxml", "Авторизация пользователя", "", "", null);
+                            openWindow("cloud-start.fxml", "Авторизация пользователя", "", "", null);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     });
                 }
-                if (fxml.equals("/cloud.fxml")) {
+                if (fxml.equals("cloud.fxml")) {
                     stage.setOnCloseRequest(event -> closeConnection());
                 }
                 stage.resizableProperty().set(false);

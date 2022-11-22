@@ -60,7 +60,7 @@ public class RegistrationController implements Initializable {
     }
 
     public void cancel(ActionEvent actionEvent) throws IOException {
-        network.openWindow("/cloud-start.fxml", "Авторизация пользователя", "", "", null);
+        network.openWindow("cloud-start.fxml", "Авторизация пользователя", "", "", null);
     }
 
     @Override

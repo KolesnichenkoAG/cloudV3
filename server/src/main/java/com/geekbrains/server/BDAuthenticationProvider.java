@@ -11,12 +11,12 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
     private ResultSet rs;
 
     static final String USER = "postgres";
-    static final String PASS = "postgres";
+    static final String PASS = "kag1981";
 
     @Override
     public String getUsernameByLogin(String login) {
         try {
-            ps = connection.prepareStatement("SELECT * FROM users WHERE login = ?");
+            ps = connection.prepareStatement("Select * From users Where login = ?");
             ps.setString(1, login);
 
             rs = ps.executeQuery();
@@ -34,7 +34,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
     @Override
     public String getPasswordByLogin(String login) {
         try {
-            ps = connection.prepareStatement("SELECT * FROM users Where login = ?");
+            ps = connection.prepareStatement("Select * From users Where login = ?");
             ps.setString(1, login);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -52,7 +52,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
     @Override
     public boolean isLoginUsed(String login) {
         try {
-            ps = connection.prepareStatement("SELECT * FROM users Where login = ?");
+            ps = connection.prepareStatement("Select * From users Where login = ?");
             ps.setString(1, login);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -69,7 +69,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
     @Override
     public boolean isEmailUsed(String email) {
         try {
-            ps = connection.prepareStatement("SELECT * FROM users Where email = ?");
+            ps = connection.prepareStatement("Select * From users Where email = ?");
             ps.setString(1, email);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -86,7 +86,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
     @Override
     public String getUuidByLogin(String login) {
         try {
-            ps = connection.prepareStatement("SELECT * FROM users Where login = ?");
+            ps = connection.prepareStatement("Select * From users Where login = ?");
             ps.setString(1, login);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -103,7 +103,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
     @Override
     public String getLoginByEmail(String email) {
         try {
-            ps = connection.prepareStatement("SELECT * FROM users Where email = ?");
+            ps = connection.prepareStatement("Select * From users Where email = ?");
             ps.setString(1, email);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -120,8 +120,8 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
     @Override
     public boolean newUser(String lastname, String name, String email, String login, String password, String uuid) {
         try {
-            ps = connection.prepareStatement("INSERT INTO users (lastname, name, email, login, password, uuid) " +
-                    " VALUES(?,?,?,?,?,?)");
+            ps = connection.prepareStatement("Insert Into users (lastname, name, email, login, password, uuid) " +
+                    " Values (?,?,?,?,?,?)");
             ps.setString(1, lastname);
             ps.setString(2, name);
             ps.setString(3, email);
@@ -143,7 +143,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
             if (connection != null && !connection.isClosed()) {
                 return;
             }
-            connection = DriverManager.getConnection("название таблицы", USER, PASS); // сюда вставить название таблоицы которую подключим
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/userDB?currentSchema=public", USER, PASS); // сюда вставить название таблоицы которую подключим
             log.debug("Соединение с базой данных установленно");
         } catch (SQLException e) {
             e.printStackTrace();

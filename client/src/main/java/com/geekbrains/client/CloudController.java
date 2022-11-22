@@ -58,7 +58,7 @@ public class CloudController implements Initializable {
     public void deleteFile(ActionEvent actionEvent) throws IOException {
         if (!storeServerVeiw.getSelectionModel().isEmpty()) {
             String fileName = storeServerVeiw.getSelectionModel().getSelectedItems().toString();
-            openDialogWindow("/dialogDelete.fxml", fileName, storeLoginLabel.getText());
+            openDialogWindow("dialogDelete.fxml", fileName, storeLoginLabel.getText());
         } else {
             network.showCONFIRMATION("Выберите файл для удаления");
         }
@@ -67,7 +67,7 @@ public class CloudController implements Initializable {
     public void renameFile(ActionEvent actionEvent) {
         if (!storeServerVeiw.getSelectionModel().isEmpty()) {
             String fileName = storeServerVeiw.getSelectionModel().getSelectedItems().toString();
-            openDialogWindow("/dialogRename.fxml", fileName, storeLoginLabel.getText());
+            openDialogWindow("dialogRename.fxml", fileName, storeLoginLabel.getText());
         } else {
             network.showCONFIRMATION("Выберите файл для переименования");
         }
@@ -100,12 +100,12 @@ public class CloudController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxml));
                 Parent root1 = (Parent) fxmlLoader.load();
 
-                if (fxml.equals("/dialogDelete.fxml")) {
+                if (fxml.equals("dialogDelete.fxml")) {
                     DialogDeleteController controller = fxmlLoader.<DialogDeleteController>getController();
                     controller.setFileName(fileName);
                     controller.setLogin(login);
                 }
-                if (fxml.equals("/dialogRename.fxml")) {
+                if (fxml.equals("dialogRename.fxml")) {
                     DialogRenameController controller = fxmlLoader.<DialogRenameController>getController();
                     controller.setFileName(fileName);
                     controller.setLogin(login);

@@ -2,12 +2,10 @@ package com.geekbrains.server;
 
 import com.geekbrains.common.*;
 import com.geekbrains.util.FilesUtils;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
-
 
 import java.io.File;
 import java.nio.file.Path;
@@ -88,7 +86,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
             case FILE_ASK:
                 FileAsk fileAsk = (FileAsk) msg;
                 log.debug("Запрос клиента о выгрузке файла с сервера");
-                Path file = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", fileAsk.getLogin()); // надо проверить название папки
+                Path file = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", "server", fileAsk.getLogin()); // надо проверить название папки
                 file = file.resolve(fileAsk.getFileName());
                 if (file.toFile().exists()) {
                     filesUtils.sendFile(file.toString(), fileAsk.getLogin(), fileAsk.getDirDestination(), null, ctx);
@@ -97,10 +95,10 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
 
             case FILE_MESSAGE:
                 FileMessage fileMessage = (FileMessage) msg;
-                Path dirTmp = Paths.get(Paths.get("").toAbsolutePath().toString(), "server",
+                Path dirTmp = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", "server",
                         "tmp", fileMessage.getLogin());
                 Path dirDestination = Paths.get(Paths.get("").toAbsolutePath().toString(),
-                        "server", fileMessage.getLogin());
+                        "server", "server", fileMessage.getLogin());
                 if (filesUtils.saveFile(dirTmp, dirDestination, fileMessage)) {
                     sendListFiles(ctx, fileMessage.getLogin());
                 }
@@ -108,7 +106,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
 
             case DELETE_ASK:
                 DeleteAsk deleteAsk = (DeleteAsk) msg;
-                Path delFile = Paths.get(Paths.get("").toAbsolutePath().toString(), "server",
+                Path delFile = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", "server",
                         deleteAsk.getLogin());
                 delFile = delFile.resolve(deleteAsk.getFileName());
                 filesUtils.deleteFile(delFile.toString());
@@ -118,10 +116,10 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
             case RENAME_ASK:
                 RenameAsk renameAsk = (RenameAsk) msg;
                 Path oldName = Paths.get(Paths.get("").toAbsolutePath().toString(), "server",
-                        renameAsk.getLogin());
+                        "server", renameAsk.getLogin());
                 oldName = oldName.resolve(renameAsk.getOldName());
                 Path newName = Paths.get(Paths.get("").toAbsolutePath().toString(), "server",
-                        renameAsk.getLogin());
+                        "server", renameAsk.getLogin());
                 newName = newName.resolve(renameAsk.getNewName());
                 filesUtils.renameFile(oldName.toString(), newName.toString());
                 sendListFiles(ctx, renameAsk.getLogin());
@@ -130,7 +128,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
     }
 
     private List<String> getListFiles(String uuid) {
-        Path path = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", uuid); // вроде проверить название папки
+        Path path = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", "server", uuid); // вроде проверить название папки
         filesUtils.createDirectory(path);
 
         List<String> listFile = new ArrayList<>();

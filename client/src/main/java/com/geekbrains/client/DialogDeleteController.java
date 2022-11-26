@@ -9,8 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DialogDeleteController implements Initializable {
-    public Button DelYesButton;
-    public Button DelNoButton;
+    public Button dialDelYesButton;
+    public Button dialDelNoButton;
 
     private Network network;
     private String login;
@@ -30,7 +30,7 @@ public class DialogDeleteController implements Initializable {
     }
 
     public void closeWindow() {
-        Stage stage = (Stage) DelYesButton.getScene().getWindow();
+        Stage stage = (Stage) dialDelYesButton.getScene().getWindow();
         stage.close();
     }
 

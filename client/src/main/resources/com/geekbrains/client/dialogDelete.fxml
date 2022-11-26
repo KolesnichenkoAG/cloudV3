@@ -8,13 +8,13 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.geekbrains.client.DialogDeleteController">
 
-    <Button fx:id="DelYesButton" onAction="#deleteFile" layoutX="115.0" layoutY="108.0" mnemonicParsing="false"
+    <Button fx:id="dialDelYesButton" onAction="#deleteFile" layoutX="115.0" layoutY="108.0" mnemonicParsing="false"
             prefHeight="25.0" prefWidth="61.0" text="Да"/>
 
-    <Button fx:id="DelNoButton" onAction="#closeWindow" layoutX="239.0" layoutY="108.0" mnemonicParsing="false"
+    <Button fx:id="dialDelNoButton" onAction="#closeWindow" layoutX="239.0" layoutY="108.0" mnemonicParsing="false"
             prefHeight="25.0" prefWidth="61.0" text="Нет"/>
 
-    <Label layoutX="70.0" layoutY="34.0" text="Удалить выделенный файл ?" textAlignment="CENTER">
+    <Label layoutX="70.0" layoutY="34.0" text="Удалить выделенный файл ?" textAlignment="CENTER" wrapText="true">
         <font>
             <Font size="20.0"/>
         </font>

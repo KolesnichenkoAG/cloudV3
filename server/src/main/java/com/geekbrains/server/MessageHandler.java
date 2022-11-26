@@ -7,13 +7,11 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.io.File;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import static com.geekbrains.common.TypeMessage.*;
 
 @Slf4j
 public class MessageHandler extends SimpleChannelInboundHandler<Message> {

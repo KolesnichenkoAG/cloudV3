@@ -126,7 +126,7 @@ public class Network {
         }
     }
 
-    private void updateFileList(List<String> listFiles, CloudController controller) {
+    public void updateFileList(List<String> listFiles, CloudController controller) {
         Platform.runLater(() -> {
             controller.storeServerVeiw.getItems().clear();
             if (listFiles != null) {
@@ -157,7 +157,7 @@ public class Network {
         }
     }
 
-    private void sendListMessageToServer(String login) {
+    public void sendListMessageToServer(String login) {
         try {
             os.writeObject(new ListAsk(login));
             os.flush();
@@ -201,7 +201,7 @@ public class Network {
         }
     }
 
-    private void showError(String message) {
+    public void showError(String message) {
         Platform.runLater(() -> {
             new Alert(Alert.AlertType.ERROR, message, ButtonType.OK).showAndWait();
         });
@@ -226,6 +226,7 @@ public class Network {
                 if (fxml.equals("cloud.fxml")) {
                     controller = fxmlLoader.<CloudController>getController();
                     controller.storeUserLabel.setText(fio);    // так как создал один label запишем только имя
+                    controller.storeLoginLabel.setText(login);
 
                     updateFileList((listMessage.getListFiles()), controller);
                 }

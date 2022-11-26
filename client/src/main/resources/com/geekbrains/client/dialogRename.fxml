@@ -8,11 +8,11 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.geekbrains.client.DialogRenameController">
 
-    <Button fx:id="RenRenameButton" onAction="#renameFile" layoutX="53.0" layoutY="121.0" mnemonicParsing="false"
+    <Button fx:id="dialRenRenameButton" onAction="#renameFile" layoutX="53.0" layoutY="121.0" mnemonicParsing="false"
             prefHeight="25.0"
             prefWidth="120.0" text="Переименовать"/>
 
-    <Button fx:id="RenCancelButton" onAction="#closeWindow" layoutX="234.0" layoutY="121.0" mnemonicParsing="false"
+    <Button fx:id="dialRenCancelButton" onAction="#closeWindow" layoutX="234.0" layoutY="121.0" mnemonicParsing="false"
             prefHeight="25.0"
             prefWidth="120.0" text="Отмена"/>
 
@@ -22,6 +22,6 @@
         </font>
     </Label>
 
-    <TextField fx:id="RenNewNameField" onAction="#renameFile" layoutX="53.0" layoutY="67.0" prefHeight="25.0" prefWidth="300.0"/>
+    <TextField fx:id="dialRenNewNameField" onAction="#renameFile" layoutX="53.0" layoutY="67.0" prefHeight="25.0" prefWidth="300.0"/>
 
 </AnchorPane>

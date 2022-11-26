@@ -1,21 +1,19 @@
 package com.geekbrains.client;
 
 import com.geekbrains.util.FilesUtils;
+import javafx.event.ActionEvent;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.extern.slf4j.Slf4j;
 
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -25,16 +23,15 @@ import java.util.ResourceBundle;
 public class CloudController implements Initializable {
     public ListView storeServerVeiw;
     public Button storeAddButton;
-    public Button storeSaveButton;
     public Button storeDelButton;
     public Button storeRenameButton;
     public Button storeCloseButton;
     @FXML
     public Label storeUserLabel;
     public Label storeLoginLabel;
-
+    public Button storeSaveButton;
     public Network network;
-    public FilesUtils filesUtils;
+    FilesUtils filesUtils;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,19 +59,6 @@ public class CloudController implements Initializable {
         } else {
             network.showCONFIRMATION("Выберите файл для удаления");
         }
-    }
-
-    public void renameFile(ActionEvent actionEvent) {
-        if (!storeServerVeiw.getSelectionModel().isEmpty()) {
-            String fileName = storeServerVeiw.getSelectionModel().getSelectedItems().toString();
-            openDialogWindow("dialogRename.fxml", fileName, storeLoginLabel.getText());
-        } else {
-            network.showCONFIRMATION("Выберите файл для переименования");
-        }
-    }
-
-    public void closeWindow(ActionEvent actionEvent) {
-        network.closeConnection();
     }
 
     public void saveFile(ActionEvent actionEvent) {
@@ -121,5 +105,18 @@ public class CloudController implements Initializable {
                 log.error("Ошибка при открытии окна", e);
             }
         });
+    }
+
+    public void renameFile(ActionEvent actionEvent) {
+        if (!storeServerVeiw.getSelectionModel().isEmpty()) {
+            String fileName = storeServerVeiw.getSelectionModel().getSelectedItems().toString();
+            openDialogWindow("dialogRename.fxml", fileName, storeLoginLabel.getText());
+        } else {
+            network.showCONFIRMATION("Выберите файл для переименования");
+        }
+    }
+
+    public void closeWindow(ActionEvent actionEvent) {
+        network.closeConnection();
     }
 }

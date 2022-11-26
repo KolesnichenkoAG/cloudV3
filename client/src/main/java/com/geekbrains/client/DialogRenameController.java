@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class DialogRenameController implements Initializable {
-    public Button RenRenameButton;
-    public Button RenCancelButton;
-    public TextField RenNewNameField;
+    public Button dialRenRenameButton;
+    public Button dialRenCancelButton;
+    public TextField dialRenNewNameField;
 
     private Network network;
     private String login;
@@ -33,9 +33,9 @@ public class DialogRenameController implements Initializable {
     }
 
     public void renameFile(ActionEvent actionEvent) {
-        if (!RenNewNameField.getText().isEmpty()) {
-            if (listFiles.indexOf(RenNewNameField.getText()) == -1) {
-                network.sendRenameMessageToServer(fileName, RenNewNameField.getText(), login);
+        if (!dialRenNewNameField.getText().isEmpty()) {
+            if (listFiles.indexOf(dialRenNewNameField.getText()) == -1) {
+                network.sendRenameMessageToServer(fileName, dialRenNewNameField.getText(), login);
                 closeWindow();
             } else network.showCONFIRMATION("Файл с таким именем уже существует. Введите другое имя");
         } else {
@@ -44,7 +44,7 @@ public class DialogRenameController implements Initializable {
     }
 
     public void closeWindow() {
-        Stage stage = (Stage) RenNewNameField.getScene().getWindow();
+        Stage stage = (Stage) dialRenNewNameField.getScene().getWindow();
         stage.close();
     }
 

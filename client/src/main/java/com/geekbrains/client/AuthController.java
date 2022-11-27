@@ -32,6 +32,7 @@ public class AuthController implements Initializable {
         if (network.connect()) {
             network.sendAuthMessageToServer(authLoginField.getText(), authPasswordField.getText());
         }
+        ;
     }
 
     public void registrationUser(ActionEvent actionEvent) throws IOException {

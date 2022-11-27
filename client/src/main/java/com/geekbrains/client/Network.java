@@ -128,9 +128,9 @@ public class Network {
 
     public void updateFileList(List<String> listFiles, CloudController controller) {
         Platform.runLater(() -> {
-            controller.storeServerVeiw.getItems().clear();
+            controller.storServerVeiw.getItems().clear();
             if (listFiles != null) {
-                controller.storeServerVeiw.getItems().addAll(listFiles);
+                controller.storServerVeiw.getItems().addAll(listFiles);
             }
         });
     }
@@ -183,7 +183,9 @@ public class Network {
         try {
             os.writeObject(new DeleteAsk(fileName, login));
             os.flush();
+            System.out.println(fileName);
             log.debug("Сообщение от клиента: запрос на удаление файла " + fileName);
+
         } catch (IOException e) {
             e.printStackTrace();
             log.error("Ошибка при отправке запроса на удаление файла на сервер");
@@ -201,7 +203,7 @@ public class Network {
         }
     }
 
-    public void showError(String message) {
+    private void showError(String message) {
         Platform.runLater(() -> {
             new Alert(Alert.AlertType.ERROR, message, ButtonType.OK).showAndWait();
         });
@@ -225,8 +227,8 @@ public class Network {
 
                 if (fxml.equals("cloud.fxml")) {
                     controller = fxmlLoader.<CloudController>getController();
-                    controller.storeUserLabel.setText(fio);    // так как создал один label запишем только имя
-                    controller.storeLoginLabel.setText(login);
+                    controller.storUserLabel.setText(fio);
+                    controller.storLoginLabel.setText(login);
 
                     updateFileList((listMessage.getListFiles()), controller);
                 }

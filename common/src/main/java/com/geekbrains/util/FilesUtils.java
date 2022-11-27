@@ -1,13 +1,14 @@
 package com.geekbrains.util;
 
-import com.geekbrains.common.FileMessage;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
 import lombok.extern.slf4j.Slf4j;
+import com.geekbrains.common.FileMessage;
 
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,12 +33,13 @@ public class FilesUtils {
                 if (c < buf.length) {
                     buf = Arrays.copyOf(buf, c);
                 }
+
                 if (os != null) {
                     os.writeObject(new FileMessage(login, file.getName(), null, buf, number, count));
-                    log.debug("На сервер отправлен часть файла " + number + " из " + count);
+                    log.debug("На сервер отправлен файл " + number + " из " + count);
                 } else
                     ctx.writeAndFlush(new FileMessage(login, file.getName(), dirDestination, buf, number, count));
-                log.debug("На клиент отправлен часть файла " + number + " из " + count);
+                log.debug("На клиент отправлен файл " + number + " из " + count);
                 number++;
             }
         } catch (IOException e) {
@@ -69,6 +71,7 @@ public class FilesUtils {
             ioException.printStackTrace();
             log.error("Ошибка при записи файла " + fileNameTmp + " на сервер");
         }
+
         try {
             List<String> filesList;
             filesList = Files.list(dirTmp)
@@ -89,12 +92,24 @@ public class FilesUtils {
             } else {
                 return false;
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
             log.error("Ошибка при записи файла на сервер");
             return false;
         }
         return true;
+    }
+
+    private void joinFiles(BufferedOutputStream out, String source) throws IOException {
+        try (BufferedInputStream is = new BufferedInputStream(new FileInputStream(source), BUF_SIZE)) {
+            int c;
+            while ((c = is.read()) != -1) {
+                out.write(c);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Ошибка при объединении файлов");
+        }
     }
 
     public void deleteFile(String fileName) {
@@ -107,18 +122,6 @@ public class FilesUtils {
         }
     }
 
-    private void joinFiles(BufferedOutputStream out, String source) {
-        try (BufferedInputStream is = new BufferedInputStream(new FileInputStream(source), BUF_SIZE)) {
-            int c;
-            while ((c = is.read()) != -1) {
-                out.write(c);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("Ошибка при объединении файла");
-        }
-    }
-
     public void renameFile(String oldName, String newName) {
         File file = new File(oldName);
         if (file.exists()) {
@@ -126,6 +129,21 @@ public class FilesUtils {
             log.debug("Файл " + file.getName() + " переименован в " + newName);
         } else {
             log.error("Файл " + oldName + " не найден");
+        }
+    }
+
+    public void shareFile(String destination, String source) {
+        File file = new File(source);
+        if (file.exists()) {
+            try {
+                Files.copy(Paths.get(source), Paths.get(destination));
+            } catch (IOException e) {
+                e.printStackTrace();
+                log.error("Ошибка при копировании файла");
+            }
+            log.debug("Файл " + source + " скопирован в " + destination);
+        } else {
+            log.error("Файл " + source + " не найден");
         }
     }
 }

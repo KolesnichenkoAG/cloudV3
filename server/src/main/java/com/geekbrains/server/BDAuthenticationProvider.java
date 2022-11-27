@@ -100,7 +100,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
         return null;
     }
 
-    @Override
+   /* @Override
     public String getLoginByEmail(String email) {
         try {
             ps = connection.prepareStatement("Select * From users Where email = ?");
@@ -115,7 +115,7 @@ public class BDAuthenticationProvider implements AuthenticationProvider {
             return null;
         }
         return null;
-    }
+    }*/
 
     @Override
     public boolean newUser(String lastname, String name, String email, String login, String password, String uuid) {

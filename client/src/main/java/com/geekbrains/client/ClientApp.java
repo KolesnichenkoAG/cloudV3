@@ -18,8 +18,8 @@ public class ClientApp extends Application {
         stageChange.setCurrentScene(primaryStage);
         primaryStage.resizableProperty().set(false);
         primaryStage.setTitle("Облачное хранилище");
-        Network.getInstance();
-        primaryStage.setOnCloseRequest(event -> network.closeConnection());
+        /*Network.getInstance();
+        primaryStage.setOnCloseRequest(event -> network.closeConnection());*/
         primaryStage.show();
     }
 }

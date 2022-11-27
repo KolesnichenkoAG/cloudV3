@@ -12,8 +12,6 @@ public interface AuthenticationProvider {
 
     String getUuidByLogin(String login);
 
-    String getLoginByEmail(String email);
-
     boolean newUser(String lastname, String name, String email, String login, String password, String uuid);
 
     void connectBD();

@@ -62,7 +62,7 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
             case REG_ASK:
                 RegAsk regAsk = (RegAsk) msg;
                 if (authenticationProvider.isLoginUsed(regAsk.getLogin())) {
-                    ctx.writeAndFlush(new RegError(regAsk.getLogin(), ""));
+                    ctx.writeAndFlush(new RegError(regAsk.getLogin(),""));
                     break;
                 }
                 if (authenticationProvider.isEmailUsed(regAsk.getEmail())) {
@@ -84,7 +84,8 @@ public class MessageHandler extends SimpleChannelInboundHandler<Message> {
             case FILE_ASK:
                 FileAsk fileAsk = (FileAsk) msg;
                 log.debug("Запрос клиента о выгрузке файла с сервера");
-                Path file = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", "server", fileAsk.getLogin()); // надо проверить название папки
+                Path file = Paths.get(Paths.get("").toAbsolutePath().toString(), "server", "server",
+                        fileAsk.getLogin()); // надо проверить название папки
                 file = file.resolve(fileAsk.getFileName());
                 if (file.toFile().exists()) {
                     filesUtils.sendFile(file.toString(), fileAsk.getLogin(), fileAsk.getDirDestination(), null, ctx);

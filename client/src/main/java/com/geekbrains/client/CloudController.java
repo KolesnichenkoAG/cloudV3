@@ -21,15 +21,15 @@ import java.util.ResourceBundle;
 
 @Slf4j
 public class CloudController implements Initializable {
-    public ListView storeServerVeiw;
-    public Button storeAddButton;
-    public Button storeDelButton;
-    public Button storeRenameButton;
-    public Button storeCloseButton;
+    public ListView storServerVeiw;
+    public Button storAddButton;
+    public Button storDelButton;
+    public Button storRenameButton;
+    public Button storCloseButton;
     @FXML
-    public Label storeUserLabel;
-    public Label storeLoginLabel;
-    public Button storeSaveButton;
+    public Label storUserLabel;
+    public Label storLoginLabel;
+    public Button storSaveButton;
     public Network network;
     FilesUtils filesUtils;
 
@@ -47,23 +47,23 @@ public class CloudController implements Initializable {
         fileChooser.getExtensionFilters().add(filter);
         File file = fileChooser.showOpenDialog(network.getStageChange().getCurrentStage());
         if (file != null) {
-            filesUtils.sendFile(file.toString(), storeLoginLabel.getText(), "", network.getObjectEncoderOutputStream(),
+            filesUtils.sendFile(file.toString(), storLoginLabel.getText(), "", network.getObjectEncoderOutputStream(),
                     null);
         }
     }
 
     public void deleteFile(ActionEvent actionEvent) throws IOException {
-        if (!storeServerVeiw.getSelectionModel().isEmpty()) {
-            String fileName = storeServerVeiw.getSelectionModel().getSelectedItems().toString();
-            openDialogWindow("dialogDelete.fxml", fileName, storeLoginLabel.getText());
+        if (!storServerVeiw.getSelectionModel().isEmpty()) {
+            String fileName = storServerVeiw.getSelectionModel().getSelectedItems().toString();
+            openDialogWindow("dialogDelete.fxml", fileName, storLoginLabel.getText());
         } else {
             network.showCONFIRMATION("Выберите файл для удаления");
         }
     }
 
     public void saveFile(ActionEvent actionEvent) {
-        if (!storeServerVeiw.getSelectionModel().isEmpty()) {
-            String fileName = storeServerVeiw.getSelectionModel().getSelectedItems().toString();
+        if (!storServerVeiw.getSelectionModel().isEmpty()) {
+            String fileName = storServerVeiw.getSelectionModel().getSelectedItems().toString();
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save file from cloud");
             FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("All files ", "*.*");
@@ -71,7 +71,7 @@ public class CloudController implements Initializable {
             fileChooser.setInitialFileName(fileName);
             File file = fileChooser.showSaveDialog((network.getStageChange().getCurrentStage()));
             if (file != null) {
-                network.sendSaveFileAskToServer(fileName, file.getParent(), storeLoginLabel.getText());
+                network.sendSaveFileAskToServer(fileName, file.getParent(), storLoginLabel.getText());
             }
         } else {
             network.showCONFIRMATION("Выберите файл для выгрузки с сервера");
@@ -93,7 +93,7 @@ public class CloudController implements Initializable {
                     DialogRenameController controller = fxmlLoader.<DialogRenameController>getController();
                     controller.setFileName(fileName);
                     controller.setLogin(login);
-                    controller.setListFiles(storeServerVeiw.getItems());
+                    controller.setListFiles(storServerVeiw.getItems());
                 }
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
@@ -108,9 +108,9 @@ public class CloudController implements Initializable {
     }
 
     public void renameFile(ActionEvent actionEvent) {
-        if (!storeServerVeiw.getSelectionModel().isEmpty()) {
-            String fileName = storeServerVeiw.getSelectionModel().getSelectedItems().toString();
-            openDialogWindow("dialogRename.fxml", fileName, storeLoginLabel.getText());
+        if (!storServerVeiw.getSelectionModel().isEmpty()) {
+            String fileName = storServerVeiw.getSelectionModel().getSelectedItems().toString();
+            openDialogWindow("dialogRename.fxml", fileName, storLoginLabel.getText());
         } else {
             network.showCONFIRMATION("Выберите файл для переименования");
         }

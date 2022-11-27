@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.geekbrains.client.CloudController">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+
+            <ListView fx:id="storServerVeiw" layoutX="9.0" layoutY="97.0" prefHeight="297.0" prefWidth="452.0"/>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a4d4979e" height="89.0" stroke="BLACK"
+                       strokeType="INSIDE" width="684.0"/>
+
+            <Label layoutX="290.0" layoutY="16.0" text="Cloud" textFill="#121c87">
+                <font>
+                    <Font name="AR CHRISTY" size="41.0"/>
+                </font>
+            </Label>
+            <Label fx:id="storUserLabel" layoutX="5.0" layoutY="65.0" prefHeight="18.0" prefWidth="214.0" text="Label"/>
+            <Label fx:id="storLoginLabel" layoutX="431.0" layoutY="85.0" text="Label" visible="false" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dde6da9e" height="297.0" layoutX="470.0" layoutY="98.0"
+                       stroke="BLACK" strokeType="INSIDE" width="200.0"/>
+
+            <Button fx:id="storAddButton"  layoutX="481.0" layoutY="111.0" mnemonicParsing="false" onAction="#addFile" prefHeight="30.0"
+                    prefWidth="178.0" text="Добавить файл">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+
+            <Button fx:id="storSaveButton" layoutX="481.0" layoutY="156.0" mnemonicParsing="false" onAction="#saveFile" prefHeight="30.0"
+                    prefWidth="178.0" text="Выгрузить файл">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+
+            <Button fx:id="storDelButton" layoutX="481.0" layoutY="200.0" mnemonicParsing="false" onAction="#deleteFile" prefHeight="30.0"
+                    prefWidth="178.0" text="Удалить файл">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+
+            <Button fx:id="storRenameButton" layoutX="481.0" layoutY="247.0" mnemonicParsing="false" onAction="#renameFile" prefHeight="30.0"
+                    prefWidth="178.0" text="Переименовать файл">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+
+            <Button fx:id="storCloseButton" layoutX="481.0" layoutY="345.0" mnemonicParsing="false" onAction="#closeWindow" prefHeight="30.0"
+                    prefWidth="178.0" text="Выйти">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+
+        </AnchorPane>
+    </children>
+</VBox>

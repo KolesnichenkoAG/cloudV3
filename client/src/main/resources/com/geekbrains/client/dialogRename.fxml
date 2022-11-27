@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="160.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.geekbrains.client.DialogRenameController">
+
+    <Button fx:id="dialRenRenameButton" onAction="#renameFile" layoutX="53.0" layoutY="121.0" mnemonicParsing="false"
+            prefHeight="25.0"
+            prefWidth="120.0" text="Переименовать"/>
+
+    <Button fx:id="dialRenCancelButton" onAction="#closeWindow" layoutX="234.0" layoutY="121.0" mnemonicParsing="false"
+            prefHeight="25.0"
+            prefWidth="120.0" text="Отмена"/>
+
+    <Label layoutX="110.0" layoutY="27.0" text="Введите новое имя файла">
+        <font>
+            <Font size="15.0"/>
+        </font>
+    </Label>
+
+    <TextField fx:id="dialRenNewNameField" onAction="#renameFile" layoutX="53.0" layoutY="67.0" prefHeight="25.0" prefWidth="300.0"/>
+
+</AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="160.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.geekbrains.client.DialogDeleteController">
+
+    <Button fx:id="dialDelYesButton" onAction="#deleteFile" layoutX="115.0" layoutY="108.0" mnemonicParsing="false"
+            prefHeight="25.0" prefWidth="61.0" text="Да"/>
+
+    <Button fx:id="dialDelNoButton" onAction="#closeWindow" layoutX="239.0" layoutY="108.0" mnemonicParsing="false"
+            prefHeight="25.0" prefWidth="61.0" text="Нет"/>
+
+    <Label layoutX="70.0" layoutY="34.0" text="Удалить выделенный файл ?" textAlignment="CENTER" wrapText="true">
+        <font>
+            <Font size="20.0"/>
+        </font>
+    </Label>
+
+</AnchorPane>
